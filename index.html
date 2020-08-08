@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>~</title>
+  <link rel="icon" sizes="any" href="images/white_triangle.svg"/>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8"/>
+  <meta name="Description" content="A simple startpage.">
+</head>
+<body>
+  <div class="time_date" id="time_date"></div>
+  <div class="main">
+    <h1>startpage</h1>
+  <form action="https://duckduckgo.com/" method="GET">
+    <label for="q">></label>
+    <input id="q"
+           name="q"
+           type="search"
+           tabindex="-1"
+           placeholder="just start typing">
+  </form>  
+  <nav>
+  <ul>
+    <li>fav</li>
+    <li><a href="https://youtu.be/">youtube</a></li>
+    <li><a href="https://soundcloud.com/">soundcloud</a></li>
+  </ul>
+  <ul>
+    <li>code</li>
+    <li><a href="https://github.com/">github</a></li>
+    <li><a href="https://stackoverflow.com/questions">stackoverflow</a></li>
+
+  </ul>
+  <ul>
+    <li>anime</li>
+    <li><a href="https://myanimelist.net/">myanimelist</a></li>
+    <li><a href="https://9anime.to/anime">9anime</a></li>
+  </ul>
+  </nav>
+  </div>
+    <script>
+    // Date and time
+    //document.getElementById("main").innerHTML = Date();
+    function updateClock() {
+      var days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+      var m = new Date();
+      var dateString =
+      (days[ m.getDay() ]) + " " +
+      ("0" + m.getDate()).slice(-2) + "/" +
+      ("0" + (m.getMonth()+1)).slice(-2) +"/"+
+      m.getFullYear() +" "+
+      ("0" + m.getHours()).slice(-2) + ":" +
+      ("0" + m.getMinutes()).slice(-2) + ":" +
+      ("0" + m.getSeconds()).slice(-2);
+
+      // set the content of the time_date element to the formatted string
+      document.getElementById('time_date').innerHTML = dateString;
+
+      // call this function again in 1000ms
+      setTimeout(updateClock, 1000);
+    }
+    updateClock(); // initial call
+
+    const searchbox = document.getElementById("q");
+    document.onkeypress = function (e) {
+      searchbox.focus();
+    };
+    function unfocus() {
+      if (searchbox.value == '') {
+        searchbox.blur();
+      }
+    }
+    searchbox.addEventListener('input', unfocus, false);
+    </script>
+</body>
+</html>
